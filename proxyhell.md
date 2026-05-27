@@ -418,7 +418,7 @@ Edite o arquivo `~/.docker/config.json`
         {
             "httpProxy":  "http://USU:PASS*@172.17.1.20:3128",
             "httpsProxy": "http://USU:PASS*@172.17.1.20:3128",
-            "noProxy":    "localhost,127.0.0.1,10.0.0.0/8,.dominio.com.br,172.0.0.>
+            "noProxy":    "localhost,127.0.0.1,10.0.0.0/8,.dominio.com.br,172.0.0.0/8,192.0.0.0/8"
         }
     }
 }
@@ -449,3 +449,22 @@ Conteúdo do arquivo
   </proxies>
 </settings>
 ```
+
+### Ollama
+`sudo systemctl edit ollama`
+
+Isso abre um editor. Adicione:
+```txt
+[Service]
+Environment="HTTPS_PROXY=http://USU:PASS*@172.17.1.20:3128"
+Environment="HTTP_PROXY=http://USU:PASS*@172.17.1.20:3128"
+Environment="NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,.dominio.com.br,172.0.0.0/8,192.0.0.0/8"
+```
+
+Salve, depois recarregue e reinicie:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+```
+Agora tente novamente:
+ollama pull qwen3:14b

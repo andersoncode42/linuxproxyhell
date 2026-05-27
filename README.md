@@ -1,2 +1,5 @@
 # linuxproxyhell
-Um documento para tentar usar um proxy com autenticação no linux
+
+Este documento descreve como e quais arquivos editar para o seu desktop linux funcionar atrás de um proxy com autenticação.
+
+[Clique aqui](./proxyhell.md)
